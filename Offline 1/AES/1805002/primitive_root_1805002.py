@@ -1,4 +1,4 @@
-import miller_rabin_test
+import miller_rabin_test_1805002
 
 def exp_by_squaring_mod(x, n, p):
     if n < 0:
@@ -45,14 +45,65 @@ def generate_primitive_root(prime, factors):
                     if g > max_value:
                         g = min_value
                         while True:
-                            if miller_rabin_test.isPrime(g, 4):
+                            if miller_rabin_test_1805002.isPrime(g, 4):
                                 return g
                             g += 1
                             
                     # if g is prime, we found a candidate, stop jumping for g (break) and proceed with primitive checking
-                    if miller_rabin_test.isPrime(g, 4):
+                    if miller_rabin_test_1805002.isPrime(g, 4):
                         break
                 # g is not prime, continue searching for g
+            
+            # found candidate as previous g failed. dont need to check other values. break
+            break
+        
+        # if it is potential g, break
+        if is_primitive_root:
+            break
+        # else continue searching
+        else:
+            continue
+            
+
+    return g
+    
+
+def generate_primitive_root2(prime, factors, min_, max_):
+    min_value = min_
+    max_value = max_
+    g = min_value
+    factor_count = len(factors)
+    phi_prime = prime - 1
+    
+    while(True):
+        mod_value = []
+        
+        # populating list of results of phi/factors
+        for i in range(factor_count):
+            div = phi_prime // factors[i] 
+            # Calculate: g^div (mod prime)
+            mod_value.append(exp_by_squaring_mod(g, div, prime))
+            
+        
+        is_primitive_root = True
+        
+        # checking all values
+        for value in mod_value:
+            # if any value is 1, g cannot be a primitive root. jump to next candidate
+            if value == 1:
+                
+                is_primitive_root = False
+                
+                
+                g += 1
+                if g > max_value:
+                        g = min_value
+                        while True:
+                            if miller_rabin_test_1805002.isPrime(g, 4):
+                                return g
+                            g += 1
+                
+                break
             
             # found candidate as previous g failed. dont need to check other values. break
             break

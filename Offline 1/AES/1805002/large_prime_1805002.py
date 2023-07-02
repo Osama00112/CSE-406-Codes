@@ -1,11 +1,11 @@
-import miller_rabin_test
+import miller_rabin_test_1805002
 import random
 
 def generate_primes(prime_count, k, random_bit_count):
     primes = []
     while len(primes) < prime_count:
         n = random.getrandbits(random_bit_count)
-        if miller_rabin_test.isPrime(n, k):
+        if miller_rabin_test_1805002.isPrime(n, k):
             primes.append(n)
     return primes
 
@@ -39,7 +39,7 @@ def generate_k_bit_prime_number(k):
         current_prime = generate_potential_prime(current_potential_factors)
         if not is_k_bit(current_prime, k):
             continue
-        if miller_rabin_test.isPrime(current_prime, accuracy_level):
+        if miller_rabin_test_1805002.isPrime(current_prime, accuracy_level):
             potential_prime = current_prime
             potential_factors = current_potential_factors
             break
