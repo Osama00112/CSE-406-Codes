@@ -22,4 +22,3 @@ int main(int argc, char **argv)
         printf("Returned Properly\n");
         return 2;
 }
-

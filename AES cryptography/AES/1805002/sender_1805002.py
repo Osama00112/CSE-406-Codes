@@ -58,7 +58,7 @@ while True:
     
     #text = input("Plain Text:\nIn ASCII:")
     #padded_text, text_padding_count = AES.text_padding(text, 16)
-    text = "Two One Nine Two Osama"
+    text = "Two One Nine Two Osama Haque"
     
     text_in_hex = text.encode().hex()
     print("In HEX:", text_in_hex)    

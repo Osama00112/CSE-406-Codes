@@ -338,11 +338,12 @@ def key_padding(key):
     pad_length = 0
     length = len(key)
     #print ("length is:", length)
-    if length >= 32:
-        return key[:32], 32, 0
-    elif length >= 24:
-        return key[:24], 24, 0
-    elif length > 16:
+    # if length >= 32:
+    #     return key[:32], 32, 0
+    # elif length >= 24:
+    #     return key[:24], 24, 0
+    # el
+    if length > 16:
         return key[:16], 16, 0
     # elif length == 16:
     #     return key, 16, 0
